@@ -1,0 +1,205 @@
+body{
+    font-family: "Microsoft YaHei","Arial","黑体","宋体",sans-serif;
+}
+
+.list-group-item:first-child{
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+.list-group-item:last-child{
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.input-error {
+    border-color: #de615e;
+}
+
+.required {
+    color: red;
+}
+
+.img-cycle-50{
+    border-radius:50%;
+    overflow:hidden;
+}
+
+.img-square-50{
+    width: 50px;
+    height: 50px;
+}
+
+.img-square-100{
+    width: 100px;
+    height: 100px;
+}
+
+.img-square-200{
+    width: 200px;
+    height: 200px;
+}
+
+.img-rect-200x100{
+    width: 200px;
+    height: 100px;
+}
+
+.width-200{
+    width: 200px;
+}
+
+.margin-vertical-10{
+    margin: 20px 0;
+}
+
+.margin-top-5{
+    margin-top: 5px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-top-30{
+    margin-top: 30px;
+}
+
+.margin-top-50{
+    margin-top: 50px;
+}
+
+.margin-right-10{
+    margin-right: 10px;
+}
+
+.padding-5{
+    padding: 5px;
+}
+
+.padding-left-0{
+    padding-left: 0;
+}
+
+.padding-left-15{
+    padding-left: 15px;
+}
+
+.padding-right-0{
+    padding-right: 0;
+}
+
+.padding-right-15{
+    padding-right: 15px;
+}
+
+.padding-right-30{
+    padding-right: 30px;
+}
+
+.padding-top-5{
+    padding-top: 5px;
+}
+
+.padding-top-25{
+    padding-top: 25px;
+}
+
+.padding-top-70 {
+    padding-top: 70px;
+}
+
+.float-left{
+    float: left;
+}
+
+/*超出宽度就换行*/
+.break-word{
+    word-wrap:break-word;
+}
+
+/*将对象呈递为内联对象，但是对象的内容作为块对象呈递。旁边的内联对象会被呈递在同一行内*/
+.inline-block{
+    display: inline-block;
+}
+
+.badge{
+    background-color: red;
+}
+
+.bg-red{
+    background-color: red;
+    margin-top: 0;
+    padding: 0;
+}
+
+.bg-ccc{
+    background-color: #cccccc;
+}
+
+.bg-f5{
+    background-color: #f5f5f5;
+}
+
+.bg-000{
+    background-color: #000000;
+}
+
+.bg-fff{
+    background-color: #ffffff;
+}
+
+.color-fff{
+    color: #ffffff;
+}
+
+.color-ccc{
+    color: #cccccc;
+}
+
+.font-size-24{
+    font-size: 24px;
+}
+
+.font-size-32 {
+    font-size: 32px;
+}
+
+.font-size-54 {
+    font-size: 54px;
+}
+
+.border-ccc{
+    border: solid 1px #cccccc;
+}
+
+.border-bottom-ccc{
+    border-bottom: solid 1px #cccccc;
+}
+
+.text-white{
+    color: #ffffff;
+}
+
+.line-height-50{
+    line-height: 50px;
+}
+
+.text-decoration-underline{
+    text-decoration: underline;
+}
+
+/*
+.form-control{
+    border-radius: 0px;
+}*/
+
+.tabs li{
+    background-color: #f5f5f5;
+}
+
+.tabs .current{
+    background-color: #ffffff;
+    border-left: 5px solid #5cb85c;
+    border-right: 0px;
+}
