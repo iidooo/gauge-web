@@ -40,12 +40,10 @@ var GuageList = React.createClass({
         };
     },
     componentWillMount: function () {
-        console.log("componentWillMount");
         Actions.getGaugeList(this.state);
     },
     componentDidUpdate: function () {
         this.timer = null;
-        console.log("componentDidUpdate");
         // 倒计时
         var second = 30;
         var $labelSecond = $("#labelSecond");
@@ -106,7 +104,7 @@ var DataList = React.createClass({
                 <td>{new Date(this.props.guageItem.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
                 <td>{this.props.guageItem.temperature} ℃</td>
                 <td>{this.props.guageItem.pressure} kPa</td>
-                <td>{this.props.guageItem.product.vehicleLicense}</td>
+                <td>{this.props.guageItem.product.vehicle.license}</td>
             </tr>
         );
     }

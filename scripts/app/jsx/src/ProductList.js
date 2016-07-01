@@ -76,7 +76,6 @@ var SearchCondition = React.createClass({
         };
     },
     handleSearch: function () {
-        console.log(this.refs.inputProductCode.value);
         this.state.productCode = this.refs.inputProductCode.value;
         this.state.vehicleLicense = this.refs.inputVehicleLicense.value;
         this.state.driverName = this.refs.inputDriverName.value;
@@ -84,6 +83,7 @@ var SearchCondition = React.createClass({
         ProductListActions.searchProductList(this.state);
     },
     handleCreate: function () {
+        sessionStorage.setItem(SessionKey.pageMode, 1);
         location.href = SiteProperties.clientURL + Page.ProductDetail;
     },
     render: function () {
@@ -176,11 +176,15 @@ var SearchResult = React.createClass({
 
 
 var SearchResultItem = React.createClass({
+    handleLink: function (productID) {
+        sessionStorage.setItem(SessionKey.pageMode, 2);
+        sessionStorage.setItem(SessionKey.productID, productID);
+        location.href = SiteProperties.clientURL + Page.ProductDetail;
+    },
     render: function () {
-
         return (
             <tr>
-                <td>{this.props.product.productCode}</td>
+                <td><a href="javascript:void(0)" onClick={this.handleLink.bind(null, this.props.product.productID)}>{this.props.product.productCode}</a></td>
                 <td>{new Date(this.props.product.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
                 <td>{this.props.product.vehicle.license}</td>
                 <td>{this.props.product.driver.firstName + this.props.product.driver.lastName}</td>

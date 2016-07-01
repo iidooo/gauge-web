@@ -25,7 +25,6 @@ var HeaderStore = Reflux.createStore({
                 self.trigger(result.data);
             } else {
                 console.log(result);
-                alert("获取登陆用户信息失败！");
             }
         };
 

@@ -76,7 +76,6 @@ var SearchCondition = React.createClass({displayName: "SearchCondition",
         };
     },
     handleSearch: function () {
-        console.log(this.refs.inputProductCode.value);
         this.state.productCode = this.refs.inputProductCode.value;
         this.state.vehicleLicense = this.refs.inputVehicleLicense.value;
         this.state.driverName = this.refs.inputDriverName.value;
@@ -84,6 +83,7 @@ var SearchCondition = React.createClass({displayName: "SearchCondition",
         ProductListActions.searchProductList(this.state);
     },
     handleCreate: function () {
+        sessionStorage.setItem(SessionKey.pageMode, 1);
         location.href = SiteProperties.clientURL + Page.ProductDetail;
     },
     render: function () {
@@ -176,11 +176,15 @@ var SearchResult = React.createClass({displayName: "SearchResult",
 
 
 var SearchResultItem = React.createClass({displayName: "SearchResultItem",
+    handleLink: function (productID) {
+        sessionStorage.setItem(SessionKey.pageMode, 2);
+        sessionStorage.setItem(SessionKey.productID, productID);
+        location.href = SiteProperties.clientURL + Page.ProductDetail;
+    },
     render: function () {
-
         return (
             React.createElement("tr", null, 
-                React.createElement("td", null, this.props.product.productCode), 
+                React.createElement("td", null, React.createElement("a", {href: "javascript:void(0)", onClick: this.handleLink.bind(null, this.props.product.productID)}, this.props.product.productCode)), 
                 React.createElement("td", null, new Date(this.props.product.createTime).format('yyyy-MM-dd hh:mm:ss')), 
                 React.createElement("td", null, this.props.product.vehicle.license), 
                 React.createElement("td", null, this.props.product.driver.firstName + this.props.product.driver.lastName), 

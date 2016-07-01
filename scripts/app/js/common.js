@@ -13,10 +13,10 @@ SiteProperties = {
     //serverURL : "http://zgvemc.iidooo.com/gauge-server"
 
 
-// 正式环境
-//var clientURL = "http://zgvemc.iidooo.com";
-//var serverURL = "http://zgvemc.iidooo.com/gauge-server";
-
+    // 正式环境
+    //clientURL : "http://zgvemc.iidooo.com/gauge-web",
+    //serverURL : "http://zgvemc.iidooo.com/gauge-server",
+    //homeClientURL : "http://zgvemc.iidooo.com",
 };
 
 
@@ -36,7 +36,11 @@ API = {
     getAccessToken: "/core/getAccessToken",
     getUserByToken: "/core/getUserByToken",
     getGaugeItemRealTime: "/getGaugeItemRealTime",
-    searchProductList: "/searchProductList"
+    getProduct: "/getProduct",
+    searchProductList: "/searchProductList",
+    searchGaugeItemList: "/searchGaugeItemList",
+    createProduct: "/createProduct",
+    updateProduct: "/updateProduct",
 };
 
 Page = {
@@ -52,6 +56,8 @@ Page = {
 SessionKey = {
     accessToken: "ACCESS_TOKEN",
     userID: "USER_ID",
+    pageMode: "PAGE_MODE",
+    productID:"PRODUCT_ID"
 };
 
 // 日期格式化
@@ -102,8 +108,8 @@ function ajaxPost(url, data, callback) {
             if (result && null != result.status && ((result.status + "").indexOf("20") == 0)) {
                 callback(result);
             } else {
-                alert("服务器端处理失败，出现异常，详细请看控制台！错误编号：" + result.status);
                 console.log(result);
+                alert("服务器端处理失败，出现异常，详细请看控制台！错误编号：" + result.status);
             }
         },
         error: function (XMLHttpRequest, textStatus, errorThrown) {
