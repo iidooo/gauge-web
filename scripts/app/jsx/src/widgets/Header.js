@@ -99,9 +99,6 @@ var MainMenu = React.createClass({
                 <li id="menuProductList">
                     <a href={SiteProperties.clientURL + Page.ProductList}>设备管理</a>
                 </li>
-                <li id="menuSysManage">
-                    <a href={SiteProperties.clientURL + Page.SysManage}>系统管理</a>
-                </li>
             </ul>
         );
     }

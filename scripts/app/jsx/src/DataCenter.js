@@ -117,8 +117,8 @@ var DataCenter = React.createClass({
                                         </div>
                                         <div className="col-sm-4">
                                             <select className="form-control" ref="inputPressureCompareLabel">
-                                                <option>超过</option>
-                                                <option>低于</option>
+                                                <option value=">=">超过</option>
+                                                <option value="<=">低于</option>
                                             </select>
                                         </div>
                                         <div className="col-sm-4">
@@ -164,8 +164,6 @@ var DataCenter = React.createClass({
                                 <a href="javascript:void(0)" className="btn btn-primary" onClick={this.handleSearch}>
                                     查&nbsp;询
                                 </a>
-                                &nbsp;
-                                <a href="javascript:void(0)" className="btn btn-success">报表导出</a>
                             </div>
                         </div>
                     </div>
@@ -186,9 +184,9 @@ var SearchResult = React.createClass({
     render: function () {
         return (
             <div className="panel panel-success">
-                <div className="panel-heading">查询结果</div>
+                <div className="panel-heading">查询结果(压力超过20kpa红色警报，超过15kpa黄色警告)</div>
                 <div className="panel-body">
-                    <table className="table table-striped table-hover">
+                    <table className="table table-hover">
                         <thead>
                         <tr>
                             <th>设备编号</th>
@@ -212,12 +210,18 @@ var SearchResult = React.createClass({
 
 var SearchResultItem = React.createClass({
     render: function () {
+        var cssClass = "";
+        if(this.props.item.pressure >= SiteProperties.pressDanger ){
+            cssClass = "bg-danger";
+        } else if(this.props.item.pressure >= SiteProperties.pressWarn){
+            cssClass = "bg-warning";
+        }
         return (
-            <tr>
+            <tr className={cssClass}>
                 <td>{this.props.item.product.productCode}</td>
                 <td>{new Date(this.props.item.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
-                <td>{this.props.item.temperature}</td>
-                <td>{this.props.item.pressure}</td>
+                <td>{this.props.item.temperature} ℃</td>
+                <td>{this.props.item.pressure} kPa</td>
                 <td>{this.props.item.product.vehicle.license}</td>
             </tr>
         );

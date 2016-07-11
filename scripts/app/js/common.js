@@ -14,9 +14,12 @@ SiteProperties = {
 
 
     // 正式环境
-    //clientURL : "http://zgvemc.iidooo.com/gauge-web",
+    //clientURL : "http://www.zgvemc.com/gauge-web",
     //serverURL : "http://zgvemc.iidooo.com/gauge-server",
-    //homeClientURL : "http://zgvemc.iidooo.com",
+    //homeClientURL : "http://www.zgvemc.com",
+
+    pressDanger: 20,
+    pressWarn: 15,
 };
 
 
@@ -26,6 +29,7 @@ SecurityClient = {
 };
 
 Message = {
+    INPUT_REQUIRED: "红色区域为必填项！",
     NO_PERMISSION: "你所在的用户组无权限执行该操作！",
     NO_PERMISSION_BY_READONLY_USER: "只读角色用户，无法进行编辑操作！",
     NO_PERMISSION_BY_CREATE_USER: "非此内容创建者，无法进行编辑操作！",
@@ -105,7 +109,14 @@ function ajaxPost(url, data, callback) {
         dataType: "json",
         data: data,
         success: function (result) {
-            if (result && null != result.status && ((result.status + "").indexOf("20") == 0)) {
+            if (result.status == 202){
+                var message = "数据验证失败，详细请看控制台的错误log。\r\n";
+                $.each(result.messages, function (index, object) {
+                    message += (object.description + "\r\n");
+                });
+                alert(message);
+                console.log(result);
+            } else if (result && null != result.status && ((result.status + "").indexOf("20") == 0)) {
                 callback(result);
             } else {
                 console.log(result);

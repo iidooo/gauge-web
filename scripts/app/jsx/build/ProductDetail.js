@@ -132,11 +132,24 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
         this.state.driverLicenseStart = this.refs.inputDriverLicenseStart.value;
         this.state.driverLicenseEnd = this.refs.inputDriverLicenseEnd.value;
 
+        if (this.state.productCode == "" || this.state.vehicleLicense == "" ||
+            this.state.driverFirstName == "" || this.state.driverLastName == "" ||
+            this.state.driverPhone == "" || this.state.driverLicense == "") {
+            $("#inputProductCode").addClass("input-error");
+            $("#inputVehicleLicense").addClass("input-error");
+            $("#inputDriverFirstName").addClass("input-error");
+            $("#inputDriverLastName").addClass("input-error");
+            $("#inputDriverPhone").addClass("input-error");
+            $("#inputDriverLicense").addClass("input-error");
+            alert(Message.INPUT_REQUIRED);
+            return false;
+        }
+
         var pageMode = sessionStorage.getItem(SessionKey.pageMode);
         if (pageMode == "2") {
             this.state.productID = this.state.product.productID;
             this.state.vehicleID = this.state.product.vehicleID;
-            this.state.driverID = this.state.driverID;
+            this.state.driverID = this.state.product.driverID;
             ProductDetailActions.updateProduct(this.state);
         } else {
             ProductDetailActions.createProduct(this.state);
@@ -161,7 +174,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "设备编号")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", ref: "inputProductCode"})
+                                                    React.createElement("input", {id: "inputProductCode", type: "text", className: "form-control", ref: "inputProductCode"})
                                                 )
                                             ), 
                                             React.createElement("div", {className: "col-sm-6"}, 
@@ -190,7 +203,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "车牌号码")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", 
+                                                    React.createElement("input", {id: "inputVehicleLicense", type: "text", className: "form-control", 
                                                            ref: "inputVehicleLicense"})
                                                 )
                                             ), 
@@ -215,10 +228,10 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                         React.createElement("option", {value: "A2"}, "A2:牵引车（重型中型全挂，半挂汽车）"), 
                                                         React.createElement("option", {value: "A3"}, "A3:城市公交车（荷载10人以上的城市公交车）"), 
                                                         React.createElement("option", {value: "B1"}, "B1:中型客车（中型载客汽车，含载10人以上19人以下的城市公交车）"), 
-                                                        React.createElement("option", {value: "B2"}, "B2：大型货车（重型中型载货汽车，大重中型专项作业车）"), 
-                                                        React.createElement("option", {value: "C1"}, "C1：小型汽车（小型微型载客汽车以及轻型微型载货汽车：轻小微型专项作业车）"
+                                                        React.createElement("option", {value: "B2"}, "B2:大型货车（重型中型载货汽车，大重中型专项作业车）"), 
+                                                        React.createElement("option", {value: "C1"}, "C1:小型汽车（小型微型载客汽车以及轻型微型载货汽车：轻小微型专项作业车）"
                                                         ), 
-                                                        React.createElement("option", {value: "C2"}, "C2：小型自动挡汽车（小型微型自动挡载客汽车以及轻型微型自动挡载货汽车）")
+                                                        React.createElement("option", {value: "C2"}, "C2:小型自动挡汽车（小型微型自动挡载客汽车以及轻型微型自动挡载货汽车）")
                                                     )
                                                 )
                                             ), 
@@ -268,7 +281,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "姓")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", 
+                                                    React.createElement("input", {id: "inputDriverFirstName", type: "text", className: "form-control", 
                                                            ref: "inputDriverFirstName"})
                                                 )
                                             ), 
@@ -277,7 +290,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "名")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", 
+                                                    React.createElement("input", {id: "inputDriverLastName", type: "text", className: "form-control", 
                                                            ref: "inputDriverLastName"})
                                                 )
                                             )
@@ -306,7 +319,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "联系电话")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", ref: "inputDriverPhone"})
+                                                    React.createElement("input", {id: "inputDriverPhone", type: "text", className: "form-control", ref: "inputDriverPhone"})
                                                 )
                                             )
                                         ), 
@@ -317,7 +330,7 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                                     React.createElement("label", {className: "required"}, "驾驶证号码")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {type: "text", className: "form-control", 
+                                                    React.createElement("input", {id: "inputDriverLicense", type: "text", className: "form-control", 
                                                            ref: "inputDriverLicense"})
                                                 )
                                             ), 

@@ -65,13 +65,13 @@ var GuageList = React.createClass({
 
                 <div className="container">
                     <div className="panel panel-primary">
-                        <div className="panel-heading">尾气实时数据监测</div>
+                        <div className="panel-heading">尾气实时数据监测(压力超过20kpa红色警报，超过15kpa黄色警告)</div>
                         <div className="panel-body">
                             <div className="alert alert-info" role="alert">
                                 离下次刷新尾气监测数据还剩 <span ref="labelSecond" id="labelSecond">30</span> S &nbsp;&nbsp;
                                 最后刷新时间：<strong>{new Date().format('yyyy-MM-dd hh:mm:ss')}</strong>
                             </div>
-                            <table className="table table-striped table-hover">
+                            <table className="table table-hover">
                                 <thead>
                                 <tr>
                                     <th>设备编号</th>
@@ -98,8 +98,14 @@ var GuageList = React.createClass({
 
 var DataList = React.createClass({
     render: function () {
+        var cssClass = "";
+        if(this.props.guageItem.pressure >= SiteProperties.pressDanger ){
+            cssClass = "bg-danger";
+        } else if(this.props.guageItem.pressure >= SiteProperties.pressWarn){
+            cssClass = "bg-warning";
+        }
         return (
-            <tr>
+            <tr className={cssClass}>
                 <td>{this.props.guageItem.product.productCode}</td>
                 <td>{new Date(this.props.guageItem.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
                 <td>{this.props.guageItem.temperature} ℃</td>

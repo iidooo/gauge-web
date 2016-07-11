@@ -98,9 +98,6 @@ var MainMenu = React.createClass({displayName: "MainMenu",
                 ), 
                 React.createElement("li", {id: "menuProductList"}, 
                     React.createElement("a", {href: SiteProperties.clientURL + Page.ProductList}, "设备管理")
-                ), 
-                React.createElement("li", {id: "menuSysManage"}, 
-                    React.createElement("a", {href: SiteProperties.clientURL + Page.SysManage}, "系统管理")
                 )
             )
         );

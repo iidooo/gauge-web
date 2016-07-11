@@ -65,13 +65,13 @@ var GuageList = React.createClass({displayName: "GuageList",
 
                 React.createElement("div", {className: "container"}, 
                     React.createElement("div", {className: "panel panel-primary"}, 
-                        React.createElement("div", {className: "panel-heading"}, "尾气实时数据监测"), 
+                        React.createElement("div", {className: "panel-heading"}, "尾气实时数据监测(压力超过20kpa红色警报，超过15kpa黄色警告)"), 
                         React.createElement("div", {className: "panel-body"}, 
                             React.createElement("div", {className: "alert alert-info", role: "alert"}, 
                                 "离下次刷新尾气监测数据还剩 ", React.createElement("span", {ref: "labelSecond", id: "labelSecond"}, "30"), " S   " + ' ' +
                                 "最后刷新时间：", React.createElement("strong", null, new Date().format('yyyy-MM-dd hh:mm:ss'))
                             ), 
-                            React.createElement("table", {className: "table table-striped table-hover"}, 
+                            React.createElement("table", {className: "table table-hover"}, 
                                 React.createElement("thead", null, 
                                 React.createElement("tr", null, 
                                     React.createElement("th", null, "设备编号"), 
@@ -98,8 +98,14 @@ var GuageList = React.createClass({displayName: "GuageList",
 
 var DataList = React.createClass({displayName: "DataList",
     render: function () {
+        var cssClass = "";
+        if(this.props.guageItem.pressure >= SiteProperties.pressDanger ){
+            cssClass = "bg-danger";
+        } else if(this.props.guageItem.pressure >= SiteProperties.pressWarn){
+            cssClass = "bg-warning";
+        }
         return (
-            React.createElement("tr", null, 
+            React.createElement("tr", {className: cssClass}, 
                 React.createElement("td", null, this.props.guageItem.product.productCode), 
                 React.createElement("td", null, new Date(this.props.guageItem.createTime).format('yyyy-MM-dd hh:mm:ss')), 
                 React.createElement("td", null, this.props.guageItem.temperature, " ℃"), 
