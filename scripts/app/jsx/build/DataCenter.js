@@ -48,7 +48,7 @@ var DataCenter = React.createClass({displayName: "DataCenter",
             }
         };
     },
-    componentWillMount: function () {
+    componentDidMount: function () {
         DataCenterActions.searchGaugeItemList(this.state.condition);
     },
     onChildChanged: function (childState) {
@@ -189,11 +189,13 @@ var SearchResult = React.createClass({displayName: "SearchResult",
                     React.createElement("table", {className: "table table-hover"}, 
                         React.createElement("thead", null, 
                         React.createElement("tr", null, 
+                            React.createElement("th", null, "设备型号"), 
                             React.createElement("th", null, "设备编号"), 
                             React.createElement("th", null, "采集时间"), 
                             React.createElement("th", null, "温度"), 
                             React.createElement("th", null, "压力"), 
-                            React.createElement("th", null, "车牌号")
+                            React.createElement("th", null, "车牌号"), 
+                            React.createElement("th", null, "备注")
                         )
                         ), 
                         React.createElement("tbody", null, 
@@ -216,13 +218,37 @@ var SearchResultItem = React.createClass({displayName: "SearchResultItem",
         } else if(this.props.item.pressure >= SiteProperties.pressWarn){
             cssClass = "bg-warning";
         }
+
+        var productModel = "";
+        var productCode = "";
+        var license = "";
+        var temperature = this.props.item.temperature + " ℃";
+        var pressure = this.props.item.pressure + " kPa";
+
+        if(this.props.item.product != null){
+            productModel = this.props.item.product.productModel;
+            productCode = this.props.item.product.productCode;
+
+            if(this.props.item.product.vehicle != null){
+                license = this.props.item.product.vehicle.license;
+            }
+        }
+
+        if(this.props.item.errorCode == "E0001"){
+            temperature = "－"
+        } else if(this.props.item.errorCode == "E0002"){
+            pressure = "－"
+        }
+
         return (
             React.createElement("tr", {className: cssClass}, 
-                React.createElement("td", null, this.props.item.product.productCode), 
+                React.createElement("td", null, productModel), 
+                React.createElement("td", null, productCode), 
                 React.createElement("td", null, new Date(this.props.item.createTime).format('yyyy-MM-dd hh:mm:ss')), 
-                React.createElement("td", null, this.props.item.temperature, " ℃"), 
-                React.createElement("td", null, this.props.item.pressure, " kPa"), 
-                React.createElement("td", null, this.props.item.product.vehicle.license)
+                React.createElement("td", null, temperature), 
+                React.createElement("td", null, pressure), 
+                React.createElement("td", null, license), 
+                React.createElement("td", null, ErrorCodeMap[this.props.item.errorCode])
             )
         );
     }

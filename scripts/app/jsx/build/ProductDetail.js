@@ -93,8 +93,8 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
     },
     componentDidUpdate: function () {
         console.log(this.state.product);
+        this.refs.inputProductModel.value = this.state.product.productModel;
         this.refs.inputProductCode.value = this.state.product.productCode;
-        this.refs.inputProductCity.value = this.state.product.city;
 
         this.refs.inputVehicleLicense.value = this.state.product.vehicle.license;
         this.refs.inputVehicleNo.value = this.state.product.vehicle.vehicleNo;
@@ -113,8 +113,8 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
         this.refs.inputDriverLicenseEnd.value = new Date(this.state.product.driver.validEnd).format('yyyy-MM-dd');
     },
     handleSave: function () {
+        this.state.productModel = this.refs.inputProductModel.value;
         this.state.productCode = this.refs.inputProductCode.value;
-        this.state.productCity = this.refs.inputProductCity.value;
 
         this.state.vehicleLicense = this.refs.inputVehicleLicense.value;
         this.state.vehicleNo = this.refs.inputVehicleNo.value;
@@ -132,9 +132,10 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
         this.state.driverLicenseStart = this.refs.inputDriverLicenseStart.value;
         this.state.driverLicenseEnd = this.refs.inputDriverLicenseEnd.value;
 
-        if (this.state.productCode == "" || this.state.vehicleLicense == "" ||
+        if (this.state.productModel == "" || this.state.productCode == "" || this.state.vehicleLicense == "" ||
             this.state.driverFirstName == "" || this.state.driverLastName == "" ||
             this.state.driverPhone == "" || this.state.driverLicense == "") {
+            $("#inputProductModel").addClass("input-error");
             $("#inputProductCode").addClass("input-error");
             $("#inputVehicleLicense").addClass("input-error");
             $("#inputDriverFirstName").addClass("input-error");
@@ -171,21 +172,18 @@ var ProductDetail = React.createClass({displayName: "ProductDetail",
                                         React.createElement("div", {className: "row form-group"}, 
                                             React.createElement("div", {className: "col-sm-6"}, 
                                                 React.createElement("div", {className: "col-sm-4 control-label"}, 
-                                                    React.createElement("label", {className: "required"}, "设备编号")
+                                                    React.createElement("label", {className: "required"}, "设备型号")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("input", {id: "inputProductCode", type: "text", className: "form-control", ref: "inputProductCode"})
+                                                    React.createElement("input", {id: "inputProductModel", type: "text", className: "form-control", ref: "inputProductModel"})
                                                 )
                                             ), 
                                             React.createElement("div", {className: "col-sm-6"}, 
                                                 React.createElement("div", {className: "col-sm-4 control-label"}, 
-                                                    React.createElement("label", null, "适用区域")
+                                                    React.createElement("label", {className: "required"}, "设备编号")
                                                 ), 
                                                 React.createElement("div", {className: "col-sm-8"}, 
-                                                    React.createElement("select", {type: "text", className: "form-control", ref: "inputProductCity"}, 
-                                                        React.createElement("option", {value: "1"}, "上海"), 
-                                                        React.createElement("option", {value: "2"}, "杭州")
-                                                    )
+                                                    React.createElement("input", {id: "inputProductCode", type: "text", className: "form-control", ref: "inputProductCode"})
                                                 )
                                             )
                                         )

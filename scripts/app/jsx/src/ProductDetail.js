@@ -93,8 +93,8 @@ var ProductDetail = React.createClass({
     },
     componentDidUpdate: function () {
         console.log(this.state.product);
+        this.refs.inputProductModel.value = this.state.product.productModel;
         this.refs.inputProductCode.value = this.state.product.productCode;
-        this.refs.inputProductCity.value = this.state.product.city;
 
         this.refs.inputVehicleLicense.value = this.state.product.vehicle.license;
         this.refs.inputVehicleNo.value = this.state.product.vehicle.vehicleNo;
@@ -113,8 +113,8 @@ var ProductDetail = React.createClass({
         this.refs.inputDriverLicenseEnd.value = new Date(this.state.product.driver.validEnd).format('yyyy-MM-dd');
     },
     handleSave: function () {
+        this.state.productModel = this.refs.inputProductModel.value;
         this.state.productCode = this.refs.inputProductCode.value;
-        this.state.productCity = this.refs.inputProductCity.value;
 
         this.state.vehicleLicense = this.refs.inputVehicleLicense.value;
         this.state.vehicleNo = this.refs.inputVehicleNo.value;
@@ -132,9 +132,10 @@ var ProductDetail = React.createClass({
         this.state.driverLicenseStart = this.refs.inputDriverLicenseStart.value;
         this.state.driverLicenseEnd = this.refs.inputDriverLicenseEnd.value;
 
-        if (this.state.productCode == "" || this.state.vehicleLicense == "" ||
+        if (this.state.productModel == "" || this.state.productCode == "" || this.state.vehicleLicense == "" ||
             this.state.driverFirstName == "" || this.state.driverLastName == "" ||
             this.state.driverPhone == "" || this.state.driverLicense == "") {
+            $("#inputProductModel").addClass("input-error");
             $("#inputProductCode").addClass("input-error");
             $("#inputVehicleLicense").addClass("input-error");
             $("#inputDriverFirstName").addClass("input-error");
@@ -171,21 +172,18 @@ var ProductDetail = React.createClass({
                                         <div className="row form-group">
                                             <div className="col-sm-6">
                                                 <div className="col-sm-4 control-label">
-                                                    <label className="required">设备编号</label>
+                                                    <label className="required">设备型号</label>
                                                 </div>
                                                 <div className="col-sm-8">
-                                                    <input id="inputProductCode" type="text" className="form-control" ref="inputProductCode"/>
+                                                    <input id="inputProductModel" type="text" className="form-control" ref="inputProductModel"/>
                                                 </div>
                                             </div>
                                             <div className="col-sm-6">
                                                 <div className="col-sm-4 control-label">
-                                                    <label>适用区域</label>
+                                                    <label className="required">设备编号</label>
                                                 </div>
                                                 <div className="col-sm-8">
-                                                    <select type="text" className="form-control" ref="inputProductCity">
-                                                        <option value="1">上海</option>
-                                                        <option value="2">杭州</option>
-                                                    </select>
+                                                    <input id="inputProductCode" type="text" className="form-control" ref="inputProductCode"/>
                                                 </div>
                                             </div>
                                         </div>

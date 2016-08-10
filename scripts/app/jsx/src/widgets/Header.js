@@ -45,7 +45,7 @@ var Header = React.createClass({
             SecurityUser: {}
         };
     },
-    componentWillMount: function () {
+    componentDidMount: function () {
         HeaderActions.getUserByToken(this.state);
     },
     render: function () {

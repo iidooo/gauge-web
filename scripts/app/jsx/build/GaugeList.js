@@ -39,7 +39,7 @@ var GuageList = React.createClass({displayName: "GuageList",
             gaugeList: []
         };
     },
-    componentWillMount: function () {
+    componentDidMount: function () {
         Actions.getGaugeList(this.state);
     },
     componentDidUpdate: function () {
@@ -53,7 +53,6 @@ var GuageList = React.createClass({displayName: "GuageList",
                 $labelSecond.text(second);
             } else {
                 clearInterval(this.timer);
-                console.log("getGaugeList");
                 Actions.getGaugeList(this.state);
             }
         }.bind(this), 1000);
@@ -74,11 +73,13 @@ var GuageList = React.createClass({displayName: "GuageList",
                             React.createElement("table", {className: "table table-hover"}, 
                                 React.createElement("thead", null, 
                                 React.createElement("tr", null, 
+                                    React.createElement("th", null, "设备型号"), 
                                     React.createElement("th", null, "设备编号"), 
                                     React.createElement("th", null, "采集时间"), 
                                     React.createElement("th", null, "温度"), 
                                     React.createElement("th", null, "压力"), 
-                                    React.createElement("th", null, "车牌号")
+                                    React.createElement("th", null, "车牌号"), 
+                                    React.createElement("th", null, "备注")
                                 )
                                 ), 
                                 React.createElement("tbody", null, 
@@ -104,13 +105,37 @@ var DataList = React.createClass({displayName: "DataList",
         } else if(this.props.guageItem.pressure >= SiteProperties.pressWarn){
             cssClass = "bg-warning";
         }
+
+        var productModel = "";
+        var productCode = "";
+        var license = "";
+        var temperature = this.props.guageItem.temperature + " ℃";
+        var pressure = this.props.guageItem.pressure + " kPa";
+
+        if(this.props.guageItem.product != null){
+            productModel = this.props.guageItem.product.productModel;
+            productCode = this.props.guageItem.product.productCode;
+
+            if(this.props.guageItem.product.vehicle != null){
+                license = this.props.guageItem.product.vehicle.license;
+            }
+        }
+
+        if(this.props.guageItem.errorCode == "E0001"){
+            temperature = "－"
+        } else if(this.props.guageItem.errorCode == "E0002"){
+            pressure = "－"
+        }
+
         return (
             React.createElement("tr", {className: cssClass}, 
-                React.createElement("td", null, this.props.guageItem.product.productCode), 
+                React.createElement("td", null, productModel), 
+                React.createElement("td", null, productCode), 
                 React.createElement("td", null, new Date(this.props.guageItem.createTime).format('yyyy-MM-dd hh:mm:ss')), 
-                React.createElement("td", null, this.props.guageItem.temperature, " ℃"), 
-                React.createElement("td", null, this.props.guageItem.pressure, " kPa"), 
-                React.createElement("td", null, this.props.guageItem.product.vehicle.license)
+                React.createElement("td", null, temperature), 
+                React.createElement("td", null, pressure), 
+                React.createElement("td", null, license), 
+                React.createElement("td", null, ErrorCodeMap[this.props.guageItem.errorCode])
             )
         );
     }

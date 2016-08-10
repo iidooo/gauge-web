@@ -39,7 +39,7 @@ var GuageList = React.createClass({
             gaugeList: []
         };
     },
-    componentWillMount: function () {
+    componentDidMount: function () {
         Actions.getGaugeList(this.state);
     },
     componentDidUpdate: function () {
@@ -53,7 +53,6 @@ var GuageList = React.createClass({
                 $labelSecond.text(second);
             } else {
                 clearInterval(this.timer);
-                console.log("getGaugeList");
                 Actions.getGaugeList(this.state);
             }
         }.bind(this), 1000);
@@ -74,11 +73,13 @@ var GuageList = React.createClass({
                             <table className="table table-hover">
                                 <thead>
                                 <tr>
+                                    <th>设备型号</th>
                                     <th>设备编号</th>
                                     <th>采集时间</th>
                                     <th>温度</th>
                                     <th>压力</th>
                                     <th>车牌号</th>
+                                    <th>备注</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -104,13 +105,37 @@ var DataList = React.createClass({
         } else if(this.props.guageItem.pressure >= SiteProperties.pressWarn){
             cssClass = "bg-warning";
         }
+
+        var productModel = "";
+        var productCode = "";
+        var license = "";
+        var temperature = this.props.guageItem.temperature + " ℃";
+        var pressure = this.props.guageItem.pressure + " kPa";
+
+        if(this.props.guageItem.product != null){
+            productModel = this.props.guageItem.product.productModel;
+            productCode = this.props.guageItem.product.productCode;
+
+            if(this.props.guageItem.product.vehicle != null){
+                license = this.props.guageItem.product.vehicle.license;
+            }
+        }
+
+        if(this.props.guageItem.errorCode == "E0001"){
+            temperature = "－"
+        } else if(this.props.guageItem.errorCode == "E0002"){
+            pressure = "－"
+        }
+
         return (
             <tr className={cssClass}>
-                <td>{this.props.guageItem.product.productCode}</td>
+                <td>{productModel}</td>
+                <td>{productCode}</td>
                 <td>{new Date(this.props.guageItem.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
-                <td>{this.props.guageItem.temperature} ℃</td>
-                <td>{this.props.guageItem.pressure} kPa</td>
-                <td>{this.props.guageItem.product.vehicle.license}</td>
+                <td>{temperature}</td>
+                <td>{pressure}</td>
+                <td>{license}</td>
+                <td>{ErrorCodeMap[this.props.guageItem.errorCode]}</td>
             </tr>
         );
     }

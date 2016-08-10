@@ -153,6 +153,7 @@ var SearchResult = React.createClass({
                     <table className="table table-striped table-hover">
                         <thead>
                         <tr>
+                            <th>设备型号</th>
                             <th>设备编号</th>
                             <th>注册时间</th>
                             <th>车牌号</th>
@@ -184,6 +185,7 @@ var SearchResultItem = React.createClass({
     render: function () {
         return (
             <tr>
+                <td>{this.props.product.productModel}</td>
                 <td><a href="javascript:void(0)" onClick={this.handleLink.bind(null, this.props.product.productID)}>{this.props.product.productCode}</a></td>
                 <td>{new Date(this.props.product.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
                 <td>{this.props.product.vehicle.license}</td>

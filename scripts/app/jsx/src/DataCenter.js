@@ -48,7 +48,7 @@ var DataCenter = React.createClass({
             }
         };
     },
-    componentWillMount: function () {
+    componentDidMount: function () {
         DataCenterActions.searchGaugeItemList(this.state.condition);
     },
     onChildChanged: function (childState) {
@@ -189,11 +189,13 @@ var SearchResult = React.createClass({
                     <table className="table table-hover">
                         <thead>
                         <tr>
+                            <th>设备型号</th>
                             <th>设备编号</th>
                             <th>采集时间</th>
                             <th>温度</th>
                             <th>压力</th>
                             <th>车牌号</th>
+                            <th>备注</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -216,13 +218,37 @@ var SearchResultItem = React.createClass({
         } else if(this.props.item.pressure >= SiteProperties.pressWarn){
             cssClass = "bg-warning";
         }
+
+        var productModel = "";
+        var productCode = "";
+        var license = "";
+        var temperature = this.props.item.temperature + " ℃";
+        var pressure = this.props.item.pressure + " kPa";
+
+        if(this.props.item.product != null){
+            productModel = this.props.item.product.productModel;
+            productCode = this.props.item.product.productCode;
+
+            if(this.props.item.product.vehicle != null){
+                license = this.props.item.product.vehicle.license;
+            }
+        }
+
+        if(this.props.item.errorCode == "E0001"){
+            temperature = "－"
+        } else if(this.props.item.errorCode == "E0002"){
+            pressure = "－"
+        }
+
         return (
             <tr className={cssClass}>
-                <td>{this.props.item.product.productCode}</td>
+                <td>{productModel}</td>
+                <td>{productCode}</td>
                 <td>{new Date(this.props.item.createTime).format('yyyy-MM-dd hh:mm:ss')}</td>
-                <td>{this.props.item.temperature} ℃</td>
-                <td>{this.props.item.pressure} kPa</td>
-                <td>{this.props.item.product.vehicle.license}</td>
+                <td>{temperature}</td>
+                <td>{pressure}</td>
+                <td>{license}</td>
+                <td>{ErrorCodeMap[this.props.item.errorCode]}</td>
             </tr>
         );
     }
