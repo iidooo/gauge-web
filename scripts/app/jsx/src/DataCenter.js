@@ -238,6 +238,9 @@ var SearchResultItem = React.createClass({
             temperature = "－"
         } else if(this.props.item.errorCode == "E0002"){
             pressure = "－"
+        } else if(this.props.item.errorCode == "E0003"){
+            temperature = "－"
+            pressure = "－"
         }
 
         return (

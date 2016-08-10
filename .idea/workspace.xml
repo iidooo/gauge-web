@@ -25,7 +25,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/GaugeList.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
+              <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,8 +64,8 @@
       <file leaf-file-name="common.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/app/js/common.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.44230768">
-              <caret line="67" column="9" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="9" />
+            <state vertical-scroll-proportion="0.48076922">
+              <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -75,7 +75,7 @@
         <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/DataCenter.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+              <caret line="243" column="9" selection-start-line="243" selection-start-column="9" selection-end-line="243" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -323,12 +323,12 @@
         <option value="$PROJECT_DIR$/pages/ProductDetail.html" />
         <option value="$PROJECT_DIR$/pages/ProductList.html" />
         <option value="$PROJECT_DIR$/pages/SysManage.html" />
-        <option value="$PROJECT_DIR$/scripts/app/jsx/src/GaugeList.js" />
-        <option value="$PROJECT_DIR$/scripts/app/jsx/src/DataCenter.js" />
         <option value="$PROJECT_DIR$/scripts/app/jsx/src/ProductDetail.js" />
         <option value="$PROJECT_DIR$/scripts/app/jsx/src/ProductList.js" />
         <option value="$PROJECT_DIR$/scripts/app/jsx/src/widgets/Header.js" />
         <option value="$PROJECT_DIR$/scripts/app/js/common.js" />
+        <option value="$PROJECT_DIR$/scripts/app/jsx/src/DataCenter.js" />
+        <option value="$PROJECT_DIR$/scripts/app/jsx/src/GaugeList.js" />
       </list>
     </option>
   </component>
@@ -1143,22 +1143,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/GaugeList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="120" column="13" selection-start-line="120" selection-start-column="13" selection-end-line="120" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/DataCenter.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/ProductDetail.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-76.111115">
@@ -1183,10 +1167,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/DataCenter.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="243" column="9" selection-start-line="243" selection-start-column="9" selection-end-line="243" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/scripts/app/jsx/src/GaugeList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="107" column="0" selection-start-line="107" selection-start-column="0" selection-end-line="107" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/app/js/common.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.44230768">
-          <caret line="67" column="9" selection-start-line="67" selection-start-column="4" selection-end-line="67" selection-end-column="9" />
+        <state vertical-scroll-proportion="0.48076922">
+          <caret line="25" column="18" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
           <folding />
         </state>
       </provider>

@@ -125,6 +125,9 @@ var DataList = React.createClass({
             temperature = "－"
         } else if(this.props.guageItem.errorCode == "E0002"){
             pressure = "－"
+        } else if(this.props.guageItem.errorCode == "E0003"){
+            temperature = "－"
+            pressure = "－"
         }
 
         return (
