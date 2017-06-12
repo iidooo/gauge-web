@@ -4,9 +4,9 @@
 
 SiteProperties = {
     // 开发环境
-    //clientURL: "http://localhost:63342/gauge-web",
-    //serverURL: "http://localhost:8080/gauge-server",
-    //homeClientURL : "http://localhost:63342/zgvemc-homepage",
+    clientURL: "http://localhost:63342/gauge-web",
+    serverURL: "http://localhost:8080/gauge-server",
+    homeClientURL : "http://localhost:63342/zgvemc-homepage",
 
     // 测试环境
     //clientURL: "http://www.iidooo.com/gauge-web",
@@ -14,9 +14,9 @@ SiteProperties = {
 
 
     // 正式环境
-    clientURL : "http://www.zgvemc.com/gauge-web",
-    serverURL : "http://www.zgvemc.com/gauge-server",
-    homeClientURL : "http://www.zgvemc.com",
+    //clientURL : "http://www.zgvemc.com/gauge-web",
+    //serverURL : "http://www.zgvemc.com/gauge-server",
+    //homeClientURL : "http://www.zgvemc.com",
 
     pressDanger: 20,
     pressWarn: 15,

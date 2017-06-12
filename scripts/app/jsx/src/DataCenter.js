@@ -17,6 +17,7 @@ var DataCenterStore = Reflux.createStore({
 
         var callback = function (result) {
             if (result.status == 200) {
+                console.log(result.data);
                 self.trigger(result.data);
             } else {
                 console.log(result);
